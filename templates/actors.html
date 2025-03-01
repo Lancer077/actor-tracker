@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actors</title>
+</head>
+<body>
+    <h1>Actors Found:</h1>
+    <ul>
+        {% for actor in actor_list %}
+            <li>{{ actor }}</li>
+        {% endfor %}
+    </ul>
+
+    <button id="go-back">Go back</button>
+
+    <script>
+        document.getElementById("go-back").addEventListener("click", () => {history.back();});
+        
+    </script>
+</body>
+</html>

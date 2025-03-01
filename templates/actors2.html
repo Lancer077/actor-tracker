@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actors</title>
+</head>
+<body>
+    <h1>Actors found in every movie: </h1>
+    <ul>
+        {% for actor in actor_list %}
+            <li>{{ actor }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Actors in found in majority of movies: </h2>
+    <ul>
+        {% for actor in actor_list_2 %}
+            <li>{{ actor }}</li>
+        {% endfor %}
+    </ul>
+
+    <button id="backButton">Go back</button>
+
+    <p>Unfortunately, I am a backend programmer and my 15 minutes of attempting to make this back button work were in vain. Web browsers give you a back button for a reason.</p>
+
+    <script>
+
+        document.getElementByID('backButton').addEventListener('click', function(){
+            window.location.href = '{{ url_for("index") }}';
+        });
+
+    </script>
+</body>
+</html>
