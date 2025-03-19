@@ -51,16 +51,20 @@ def get_cast(movie_url):
 def driver_logic(movies):
     
     num_of_movies = len(movies) #grab how many movies the user input
-    cast_URLs = [] #the list of the urls for the movie casts
 
-    #get the movie urls
-    for movie in movies:
-        curUrl = get_movie_url(movie)
-        if curUrl == None:
-            print("throwing error under driver logic getting movie cast URLs")
-            return "error"
-        cast_URLs.append(curUrl)
-    
+    #get the movie urls for the cast
+    def get_urls(movies):
+        cast_URLs = []
+        for movie in movies:
+            curUrl = get_movie_url(movie)
+            if curUrl == None:
+                print("throwing error under driver logic getting movie cast URLs")
+                return "error"
+            cast_URLs.append(curUrl)
+        return cast_URLs
+
+    cast_URLs = get_urls(movies) #the list of the urls for the movie casts
+
     #set up a list to store all of the cast lists
     cast_lists = []
     #cast_lists -> cast_list -> cast_member
@@ -90,6 +94,7 @@ def driver_logic(movies):
 
 
 @app.route('/', methods=['GET', 'POST'])
+#here is the home screen, where we ask users about the movies they are trying to find common actors for
 def index():
     if request.method == 'POST':
         #get all movie titles
@@ -103,6 +108,7 @@ def index():
         return redirect(url_for('actors', actors=','.join(actor_list)))
     return render_template('index.html')
 
+#this is the actor screen, essentially the result screen for the movies input
 @app.route('/actors')
 def actors():
     #names
